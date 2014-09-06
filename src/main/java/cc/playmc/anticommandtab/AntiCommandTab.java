@@ -30,17 +30,16 @@ public class AntiCommandTab extends JavaPlugin implements Listener {
 
 	FileConfiguration config;
 
-	List<String> plugins = new ArrayList<String>();
-	List<String> version = new ArrayList<String>();
-	List<String> about = new ArrayList<String>();
-	List<String> question = new ArrayList<String>();
+	List<String> plugins = new ArrayList<>();
+	List<String> version = new ArrayList<>();
+	List<String> about = new ArrayList<>();
+	List<String> question = new ArrayList<>();
 
-	Boolean BlockPlugins, BlockVersion, BlockAbout, BlockQuestionMark;
+	boolean blockPlugins, blockVersion, blockAbout, blockQuestionMark;
 
 	String pluginsDeny, versionDeny, aboutDeny, qmDeny;
 
 	public void onEnable() {
-
 		config = getConfig();
 
 		saveDefaultConfig();
@@ -58,10 +57,10 @@ public class AntiCommandTab extends JavaPlugin implements Listener {
 		question.add("?");
 		plugins.add("bukkit:?");
 
-		BlockPlugins = config.getBoolean("BlockPlugins");
-		BlockVersion = config.getBoolean("BlockVersion");
-		BlockAbout = config.getBoolean("BlockAbout");
-		BlockQuestionMark = config.getBoolean("BlockQuestionMark");
+		blockPlugins = config.getBoolean("BlockPlugins");
+		blockVersion = config.getBoolean("BlockVersion");
+		blockAbout = config.getBoolean("BlockAbout");
+		blockQuestionMark = config.getBoolean("BlockQuestionMark");
 
 		pluginsDeny = config.getString("Plugins").replaceAll("&", "§");
 		versionDeny = config.getString("Version").replaceAll("&", "§");
@@ -99,8 +98,7 @@ public class AntiCommandTab extends JavaPlugin implements Listener {
 							event.setCancelled(true);
 						}
 					} catch (FieldAccessException e) {
-						AntiCommandTab.this.getLogger().log(Level.SEVERE,
-								"Couldn't access field.", e);
+						getLogger().severe("Couldn't access field.");
 					}
 			}
 		});
@@ -115,7 +113,7 @@ public class AntiCommandTab extends JavaPlugin implements Listener {
 
 		if (!player.hasPermission("lib.commandtab.bypass")) {
 
-			if (BlockPlugins) {
+			if (blockPlugins) {
 				for (String Loop : plugins) {
 					if (msg[0].equalsIgnoreCase("/" + Loop)) {
 						player.sendMessage(pluginsDeny.replaceAll("%player",
@@ -125,7 +123,7 @@ public class AntiCommandTab extends JavaPlugin implements Listener {
 				}
 			}
 
-			if (BlockVersion) {
+			if (blockVersion) {
 				for (String Loop : version) {
 					if (msg[0].equalsIgnoreCase("/" + Loop)) {
 						player.sendMessage(versionDeny.replaceAll("%player",
@@ -135,7 +133,7 @@ public class AntiCommandTab extends JavaPlugin implements Listener {
 				}
 			}
 
-			if (BlockAbout) {
+			if (blockAbout) {
 				for (String Loop : about) {
 					if (msg[0].equalsIgnoreCase("/" + Loop)) {
 						player.sendMessage(aboutDeny.replaceAll("%player",
@@ -145,7 +143,7 @@ public class AntiCommandTab extends JavaPlugin implements Listener {
 				}
 			}
 
-			if (BlockQuestionMark) {
+			if (blockQuestionMark) {
 				for (String Loop : question) {
 					if (msg[0].equalsIgnoreCase("/" + Loop)) {
 						player.sendMessage(qmDeny.replaceAll("%player",
