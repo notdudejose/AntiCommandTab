@@ -90,13 +90,10 @@ public class AntiCommandTab extends JavaPlugin implements Listener {
 						 * as well.
 						 */
 
-						if ((message.startsWith("/") && !message.contains(" "))
-								|| (message.startsWith("/" + plugins) && !message.contains(" "))
-								|| (message.startsWith("/" + version) && !message.contains(" "))
-								|| (message.startsWith("/" + about) && !message.contains(" "))
-								|| (message.startsWith("/" + question) && !message.contains(" "))){
+						if ((message.startsWith("/") && !message.contains(" ")){
 							event.setCancelled(true);
 						}
+					    }
 					} catch (FieldAccessException e) {
 						getLogger().severe("Couldn't access field.");
 					}
