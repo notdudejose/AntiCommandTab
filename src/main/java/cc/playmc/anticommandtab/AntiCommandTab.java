@@ -90,7 +90,7 @@ public class AntiCommandTab extends JavaPlugin implements Listener {
 						 * as well.
 						 */
 
-						if ((message.startsWith("/") && !message.contains(" ")){
+						if (message.startsWith("/") && !message.contains(" ")){
 							event.setCancelled(true);
 						}
 					} catch (FieldAccessException e) {
