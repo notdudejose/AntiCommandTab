@@ -93,7 +93,6 @@ public class AntiCommandTab extends JavaPlugin implements Listener {
 						if ((message.startsWith("/") && !message.contains(" ")){
 							event.setCancelled(true);
 						}
-					    }
 					} catch (FieldAccessException e) {
 						getLogger().severe("Couldn't access field.");
 					}
